@@ -1,0 +1,45 @@
+{
+  "name": "Magento 2.4.8",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "php",
+  "workspaceFolder": "/workspace",
+  "forwardPorts": [
+    3306,
+    9200,
+    5672,
+    6379
+  ],
+  "portsAttributes": {
+    "3306": {
+      "label": "MySQL/MariaDB"
+    },
+    "9200": {
+      "label": "OpenSearch"
+    },
+    "5672": {
+      "label": "RabbitMQ"
+    },
+    "6379": {
+      "label": "Redis/Valkey"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "bmewburn.vscode-intelephense-client",
+        "xdebug.php-debug",
+        "EditorConfig.EditorConfig",
+        "esbenp.prettier-vscode"
+      ],
+      "settings": {
+        "php.validate.executablePath": "/usr/local/bin/php",
+        "intelephense.environment.phpVersion": "8.3"
+      }
+    }
+  },
+  "remoteUser": "www-data",
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  }
+}

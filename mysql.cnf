@@ -1,0 +1,35 @@
+[mysqld]
+# Magento 2 recommended settings
+max_allowed_packet = 256M
+innodb_buffer_pool_size = 1G
+innodb_log_file_size = 256M
+innodb_flush_log_at_trx_commit = 2
+innodb_flush_method = O_DIRECT
+
+# Performance optimizations
+query_cache_type = 0
+query_cache_size = 0
+tmp_table_size = 256M
+max_heap_table_size = 256M
+
+# Connection settings
+max_connections = 500
+wait_timeout = 600
+interactive_timeout = 600
+
+# Character set
+character-set-server = utf8mb4
+collation-server = utf8mb4_unicode_ci
+
+# InnoDB settings
+innodb_file_per_table = 1
+innodb_buffer_pool_instances = 8
+
+# Logging (disable in production)
+general_log = 0
+slow_query_log = 1
+slow_query_log_file = /var/log/mysql/slow-query.log
+long_query_time = 2
+
+# Binary logging
+log_bin_trust_function_creators = 1
