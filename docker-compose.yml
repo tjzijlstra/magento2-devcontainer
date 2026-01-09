@@ -13,8 +13,14 @@ services:
 
   nginx:
     image: nginx:1.28
+    environment:
+      - MAGENTO2_UPSTREAM=php
+      - MAGENTO2_UPSTREAM_PORT=9000
+      - NGINX_PORT=8000
+      - NGINX_TLS_PORT=8443
     ports:
-      - "80:80"
+      - "80:8000"
+      - "443:8443"
     networks:
       - magento
     depends_on:
