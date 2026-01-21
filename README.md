@@ -1,16 +1,24 @@
-# Magento 2.4.8 DevContainer
+# Magento 2 DevContainer
 
-This devcontainer provides a complete development environment for Magento 2.4.8 that meets all official system requirements.
+This devcontainer provides a complete development environment for Magento 2 that meets [Adobe's official system requirements](https://experienceleague.adobe.com/en/docs/commerce-operations/installation-guide/system-requirements).
 
-## System Requirements Met
+## Version Branches
 
-- **PHP**: 8.3 with all required extensions
-- **Database**: MariaDB 11.4
-- **Search**: OpenSearch 2.19
-- **Message Queue**: RabbitMQ 4.1
-- **Cache**: Valkey 8 (Redis alternative)
-- **Web Server**: Nginx 1.28
-- **Composer**: 2.8
+Each branch provides a docker-compose configuration matching the system requirements for that Magento version:
+
+| Branch | Magento Version | Configuration |
+|--------|-----------------|---------------|
+| `main` | 2.4.9 | [docker-compose.yml](https://github.com/graycoreio/magento2-devcontainer/blob/main/docker-compose.yml) |
+| `dev-v2.4.8` | 2.4.8 | [docker-compose.yml](https://github.com/graycoreio/magento2-devcontainer/blob/dev-v2.4.8/docker-compose.yml) |
+| `dev-v2.4.7` | 2.4.7 | [docker-compose.yml](https://github.com/graycoreio/magento2-devcontainer/blob/dev-v2.4.7/docker-compose.yml) |
+| `dev-v2.4.6` | 2.4.6 | [docker-compose.yml](https://github.com/graycoreio/magento2-devcontainer/blob/dev-v2.4.6/docker-compose.yml) |
+
+To use a specific version, update your git submodule to the appropriate branch:
+
+```bash
+cd .devcontainer/magento2-devcontainer
+git checkout dev-v2.4.7  # or desired branch
+```
 
 ## Prerequisites
 
