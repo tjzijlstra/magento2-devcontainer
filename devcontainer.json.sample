@@ -14,6 +14,7 @@
     5672,
     6379
   ],
+  "initializeCommand": "[ -f .devcontainer/magento2-devcontainer/.gitignore ] || (git submodule update --init --recursive)",
   "portsAttributes": {
     "80": {
       "label": "Nginx"
