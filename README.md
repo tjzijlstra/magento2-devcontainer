@@ -8,6 +8,17 @@ This devcontainer provides a complete development environment for Magento 2 that
 - [Docker](https://www.docker.com/products/docker-desktop/)
 - [Github Codespaces](https://github.com/features/codespaces) (Optional)
 
+## Installed tools
+
+### Devcontainer Features (You control)
+- [Claude Code](https://code.claude.com/docs/en/overview)
+- [Github CLI](https://cli.github.com/)
+
+### Container built-ins
+- [n98-magerun2](https://github.com/netz98/n98-magerun2)
+- [composer](https://getcomposer.org/)
+- [Xdebug](https://xdebug.org/)
+
 ## Supported Versions
 
 This environment will support all of the currently supported Magento versions. There are multiple configurations available (one for each major version of Magento).
