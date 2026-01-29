@@ -19,7 +19,7 @@ find_devcontainer_folder() {
         if [ -d "$dir/compose" ]; then
             folders+=("$dir")
         fi
-    done < <(find .devcontainer -mindepth 1 -maxdepth 1 -type d -print0 2>/dev/null)
+    done < <(find .devcontainer -mindepth 1 -maxdepth 2 -type d -print0 2>/dev/null)
 
     if [ ${#folders[@]} -eq 0 ]; then
         return 1

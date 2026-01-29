@@ -6,16 +6,16 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 source "$SCRIPT_DIR/lib/detect-devcontainer.sh"
 
 ## Find the devcontainer folder
-DEVCONTAINER_FOLDER=$(find_devcontainer_folder)
-
-if [ -z "$DEVCONTAINER_FOLDER" ]; then
+if ! DEVCONTAINER_FOLDER=$(find_devcontainer_folder); then
     echo "Error: Could not find magento2-devcontainer folder in .devcontainer/"
     echo "Ensure you have cloned the magento2-devcontainer repo as a submodule."
     exit 1
 fi
 
 FOLDER_NAME=$(basename "$DEVCONTAINER_FOLDER")
+TARGET_DIR=$(dirname "$DEVCONTAINER_FOLDER")
 echo "Using devcontainer folder: $DEVCONTAINER_FOLDER"
+echo "Target directory: $TARGET_DIR"
 
 ## Get available Magento versions from compose folder
 get_available_versions() {
@@ -87,17 +87,17 @@ read -p "Enter a name for your devcontainer (it should be unique per project) [$
 DEVCONTAINER_NAME="${DEVCONTAINER_NAME:-$FOLDER_NAME}"
 
 ## Copy over required docker-compose.yml.
-cp "$DEVCONTAINER_FOLDER/docker-compose.overrides.yml.sample" .devcontainer/docker-compose.overrides.yml
-echo "services: {}" > .devcontainer/docker-compose.yml
+cp "$DEVCONTAINER_FOLDER/docker-compose.overrides.yml.sample" "$TARGET_DIR/docker-compose.overrides.yml"
+echo "services: {}" > "$TARGET_DIR/docker-compose.yml"
 
 ## Copy over devcontainer and set the name and version
-cp "$DEVCONTAINER_FOLDER/devcontainer.json.sample" .devcontainer/devcontainer.json
-sed -i "s/\"name\": \"My Project Magento\"/\"name\": \"$DEVCONTAINER_NAME\"/" .devcontainer/devcontainer.json
-sed -i "s|$FOLDER_NAME/compose/[0-9]\+\.[0-9]\+\.[0-9]\+/|$FOLDER_NAME/compose/$SELECTED_VERSION/|g" .devcontainer/devcontainer.json
+cp "$DEVCONTAINER_FOLDER/devcontainer.json.sample" "$TARGET_DIR/devcontainer.json"
+sed -i "s/\"name\": \"My Project Magento\"/\"name\": \"$DEVCONTAINER_NAME\"/" "$TARGET_DIR/devcontainer.json"
+sed -i "s|$FOLDER_NAME/compose/[0-9]\+\.[0-9]\+\.[0-9]\+/|$FOLDER_NAME/compose/$SELECTED_VERSION/|g" "$TARGET_DIR/devcontainer.json"
 
 ## Copy .env.sample and set the project name
-cp "$DEVCONTAINER_FOLDER/.env.sample" .devcontainer/.env
-sed -i "s/COMPOSE_PROJECT_NAME=\"magento2-devcontainer\"/COMPOSE_PROJECT_NAME=\"$DEVCONTAINER_NAME\"/" .devcontainer/.env
+cp "$DEVCONTAINER_FOLDER/.env.sample" "$TARGET_DIR/.env"
+sed -i "s/COMPOSE_PROJECT_NAME=\"magento2-devcontainer\"/COMPOSE_PROJECT_NAME=\"$DEVCONTAINER_NAME\"/" "$TARGET_DIR/.env"
 
 echo ""
 echo "Devcontainer '$DEVCONTAINER_NAME' initialized successfully."
