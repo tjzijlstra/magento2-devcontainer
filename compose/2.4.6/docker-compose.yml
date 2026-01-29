@@ -42,7 +42,7 @@ services:
       - db_data:/var/lib/mysql
     networks:
       - magento
-    command: --max_allowed_packet=256M
+    command: --max_allowed_packet=256M  --tls-version= --log-bin-trust-function-creators=1
 
   opensearch:
     image: opensearchproject/opensearch:2.19.1
