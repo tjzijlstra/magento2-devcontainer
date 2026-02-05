@@ -87,8 +87,8 @@ read -p "Enter a name for your devcontainer (it should be unique per project) [$
 DEVCONTAINER_NAME="${DEVCONTAINER_NAME:-$FOLDER_NAME}"
 
 ## Copy over required docker-compose files
-cp "$DEVCONTAINER_FOLDER/docker-compose.shared.yml.sample" "$DEVCONTAINER_FOLDER/docker-compose.shared.yml"
-cp "$DEVCONTAINER_FOLDER/docker-compose.local.yml.sample" "$DEVCONTAINER_FOLDER/docker-compose.local.yml"
+cp "$DEVCONTAINER_FOLDER/docker-compose.shared.yml.sample" "$TARGET_DIR/docker-compose.shared.yml"
+cp "$DEVCONTAINER_FOLDER/docker-compose.local.yml.sample" "$TARGET_DIR/docker-compose.local.yml"
 echo "services: {}" > "$TARGET_DIR/docker-compose.yml"
 
 ## Copy over devcontainer and set the name and version
