@@ -70,7 +70,7 @@ services:
       - magento
 
   rabbitmq:
-    image: rabbitmq:4.0-management
+    image: rabbitmq:4.1-management
     environment:
       RABBITMQ_DEFAULT_USER: magento
       RABBITMQ_DEFAULT_PASS: magento
