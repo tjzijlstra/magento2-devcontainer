@@ -17,42 +17,47 @@ TARGET_DIR=$(dirname "$DEVCONTAINER_FOLDER")
 echo "Using devcontainer folder: $DEVCONTAINER_FOLDER"
 echo "Target directory: $TARGET_DIR"
 
-## Get available Magento versions from compose folder
-get_available_versions() {
-    local versions=()
-    while IFS= read -r -d '' dir; do
-        local version=$(basename "$dir")
-        if [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-            versions+=("$version")
-        fi
-    done < <(find "$DEVCONTAINER_FOLDER/compose" -mindepth 1 -maxdepth 1 -type d -print0 2>/dev/null | sort -zV)
-    echo "${versions[@]}"
-}
+## Available Magento versions (version:label)
+## Set label to "default" for the default version, "beta" for beta versions
+VERSIONS=(
+    "2.4.6:"
+    "2.4.7:"
+    "2.4.8:default"
+    "2.4.9:beta"
+)
 
 ## Prompt user to select a Magento version
 select_magento_version() {
-    local versions=($1)
-    local default_version="${versions[-1]}"  # Latest version as default
+    local default_index=0
 
-    echo "Available Magento versions:"
-    for i in "${!versions[@]}"; do
+    echo "Available Magento versions:" >&2
+    for i in "${!VERSIONS[@]}"; do
+        local entry="${VERSIONS[$i]}"
+        local version="${entry%%:*}"
+        local label="${entry#*:}"
         local marker=""
-        [ "${versions[$i]}" = "$default_version" ] && marker=" (latest)"
-        echo "  $((i+1))) ${versions[$i]}$marker"
+
+        if [ "$label" = "default" ]; then
+            marker=" (latest)"
+            default_index=$((i + 1))
+        elif [ "$label" = "beta" ]; then
+            marker=" (beta)"
+        fi
+
+        echo "  $((i+1))) ${version}$marker" >&2
     done
 
-    read -p "Select Magento version [${#versions[@]}]: " selection
-    selection="${selection:-${#versions[@]}}"
+    read -p "Select Magento version [$default_index]: " selection
+    selection="${selection:-$default_index}"
 
-    if [[ "$selection" =~ ^[0-9]+$ ]] && [ "$selection" -ge 1 ] && [ "$selection" -le ${#versions[@]} ]; then
-        echo "${versions[$((selection-1))]}"
+    if [[ "$selection" =~ ^[0-9]+$ ]] && [ "$selection" -ge 1 ] && [ "$selection" -le ${#VERSIONS[@]} ]; then
+        local entry="${VERSIONS[$((selection-1))]}"
+        echo "${entry%%:*}"
     else
         echo "Invalid selection." >&2
         return 1
     fi
 }
-
-AVAILABLE_VERSIONS=$(get_available_versions)
 
 ## Detect project Magento version
 SELECTED_VERSION=""
