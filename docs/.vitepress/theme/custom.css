@@ -1,0 +1,12 @@
+:root {
+    --vp-c-brand-light: #45b3ff;
+    --vp-c-brand: #027ebb;
+    --vp-c-brand-dark: #014b72;
+}
+
+.dark {
+    --vp-custom-block-tip-border: #276a51;
+    --vp-custom-block-tip-text: #4CBD94;
+    --vp-custom-block-tip-bg: #113729;
+    --vp-c-bg: #1a1a1a;
+}

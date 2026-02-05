@@ -1,6 +1,8 @@
 # TLS Configuration
 
-> **Note:** This configuration is only relevant when running devcontainers locally. If you're using GitHub Codespaces, HTTPS is handled automatically and you can skip this setup.
+::: warning
+This configuration is only relevant when running devcontainers locally. If you're using GitHub Codespaces, HTTPS is handled automatically and you can skip this setup.
+:::
 
 When working locally, it's important to consider the end-user experience. To mimic production as closely as possible for debugging purposes, you can setup a local TLS certificate. This devcontainer supports optional TLS (HTTPS) for local development.
 

@@ -1,4 +1,9 @@
 .env
-.*/
 !.github
 docker-compose.local.yml
+node_modules
+
+# Vitepress
+docs/.vitepress/dist
+docs/.vitepress/cache
+!docs/.vitepress/config.mts
