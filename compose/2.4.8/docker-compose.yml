@@ -47,7 +47,7 @@ services:
     command: --max_allowed_packet=256M
 
   opensearch:
-    image: opensearchproject/opensearch:2.19.1
+    image: opensearchproject/opensearch:3
     environment:
       - discovery.type=single-node
       - bootstrap.memory_lock=true
