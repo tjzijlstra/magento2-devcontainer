@@ -3,6 +3,9 @@ services:
     image: mappia/magento-php:devcontainer8.4
     environment:
       - PHP_IDE_CONFIG=serverName=magento
+      - "PHP_SENDMAIL_PATH=/usr/local/bin/mailpit sendmail -t --smtp-addr mailpit:1025"
+      - PHP_MAIL_ADD_X_HEADER=On
+      - PHP_MAIL_MIXED_LF_AND_CRLF=Off
       - CONFIG__DEFAULT__CATALOG__SEARCH__OPENSEARCH_SERVER_HOSTNAME=opensearch
       - CONFIG__DEFAULT__CATALOG__SEARCH__ENGINE=opensearch
       - CONFIG__DEFAULT__CATALOG__SEARCH__OPENSEARCH_SERVER_PORT=9200
@@ -14,6 +17,9 @@ services:
       - rabbitmq
       - redis
       - mailpit
+    volumes:
+      - ../../bin/configure-sendmail.sh:/usr/local/bin/configure-sendmail.sh:ro
+    command: /bin/sh -c "/usr/local/bin/configure-sendmail.sh && php-fpm"
 
   nginx:
     image: nginx:1.28
