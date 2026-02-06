@@ -19,7 +19,7 @@ services:
       - mailpit
     volumes:
       - ../../bin/configure-sendmail.sh:/usr/local/bin/configure-sendmail.sh:ro
-    command: /bin/sh -c "/usr/local/bin/configure-sendmail.sh && php-fpm"
+    command: /bin/sh -c "sh /usr/local/bin/configure-sendmail.sh && php-fpm"
 
   nginx:
     image: nginx:1.28
