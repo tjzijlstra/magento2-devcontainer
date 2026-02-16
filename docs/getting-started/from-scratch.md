@@ -92,6 +92,35 @@ git push
 bin/magento --version
 ```
 
+7. Cleanup resources for the environment
+
+:::info
+This is only necessary if you're never using the devcontainer ever again. If you want to return to the environment at a later time, you can just close VS Code and reopen the devcontainer later to start where you left off.
+:::
+
+:::danger
+This is destructive. Please 
+:::
+```bash
+## List the relevant containers for review
+docker ps -a --format '{{.ID}} {{.Names}}' \
+| awk '$2 ~ /^magento2-devcontainer-/'
+
+## Stop and remove those containers
+docker ps -a --format '{{.ID}} {{.Names}}' \
+| awk '$2 ~ /^magento2-devcontainer-/ {print $1}' \
+| xargs -r docker rm
+
+## List the relevant volumes for review.
+docker volume ls --format '{{.Name}}' \
+| awk '/^magento2-devcontainer_/'
+
+# Stop and remove the created volumes
+docker volume ls --format '{{.Name}}' \
+| awk '/^magento2-devcontainer_/' \
+| xargs -r docker volume rm
+```
+
 ## Next Steps
 
 - [Docker Compose Configuration](/customization/docker-compose) - Customize your environment
