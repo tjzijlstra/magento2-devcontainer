@@ -69,6 +69,10 @@ Do not commit `vendor` to source control (with the exception of `vendor/.htacces
 4. Create your own repo on [Github](https://github.com/) and follow the instructions to push your project.
 
 ```bash
+# Since this was a clone of the existing starter repo, you can safely remove the 
+# The now irrelevant .git of the devcontainer-starter and start afresh
+rm -rf .git
+git init
 git add .
 git commit -m "chore: init Magento project"
 git branch -M main
