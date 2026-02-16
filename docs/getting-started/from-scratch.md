@@ -33,6 +33,10 @@ git submodule add https://github.com/graycoreio/magento2-devcontainer.git .devco
 
 2. Open in VS Code and click **Reopen in Container** when prompted.
 
+![Reopen in Container prompt](/devcontainer-init.webp)
+
+
+
 3. Create the Magento project inside the container:
 
 ```bash
