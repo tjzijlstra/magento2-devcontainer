@@ -39,8 +39,6 @@ code magento2-devcontainer-starter
 
 ![Reopen in Container prompt](/devcontainer-init.webp)
 
-
-
 3. Create the Magento project inside the container:
 
 ```bash
@@ -74,8 +72,14 @@ Do not commit `vendor` to source control (with the exception of `vendor/.htacces
 rm -rf .git
 git init
 git add .
+git rm --cached .devcontainer/magento2-devcontainer -r
+rm -rf .devcontainer/magento2-devcontainer
+git submodule add https://github.com/graycoreio/magento2-devcontainer.git .devcontainer/magento2-devcontainer
+
 git commit -m "chore: init Magento project"
 git branch -M main
+
+# (!) Adjust this line based upon your Github project's information
 git remote add origin ...
 git push
 ```
@@ -86,13 +90,31 @@ git push
 .devcontainer/magento2-devcontainer/bin/setup-install.sh | bash
 ```
 
-6. Verify the installation:
+6. Reload the nginx service:
+
+```bash
+docker exec magento2-devcontainer-nginx-1 nginx -s reload
+```
+
+7. Verify the installation:
 
 ```bash
 bin/magento --version
 ```
 
-7. Cleanup resources for the environment
+8. View the app in your browser
+
+Navigate to the **Ports** tab in VS Code and click **Open in Browser** on the Nginx port.
+
+![VS Code Ports tab](/view-in-browser.webp)
+
+You should see the default Magento Luma homepage.
+
+![Luma homepage](/luma-homepage.webp)
+
+
+
+9.  Cleanup resources for the environment
 
 :::info
 This is only necessary if you never plan to use the devcontainer again. To return to the environment later, simply close VS Code and reopen the devcontainer to start where you left off.
@@ -109,7 +131,7 @@ docker ps -a --format '{{.ID}} {{.Names}}' \
 ## Stop and remove those containers
 docker ps -a --format '{{.ID}} {{.Names}}' \
 | awk '$2 ~ /^magento2-devcontainer-/ {print $1}' \
-| xargs -r docker rm
+| xargs -r docker rm -f
 
 ## List the relevant volumes for review.
 docker volume ls --format '{{.Name}}' \
