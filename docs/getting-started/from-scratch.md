@@ -95,7 +95,7 @@ bin/magento --version
 7. Cleanup resources for the environment
 
 :::info
-This is only necessary if you're never using the devcontainer ever again. If you want to return to the environment at a later time, you can just close VS Code and reopen the devcontainer later to start where you left off.
+This is only necessary if you never plan to use the devcontainer again. To return to the environment later, simply close VS Code and reopen the devcontainer to start where you left off.
 :::
 
 :::danger
