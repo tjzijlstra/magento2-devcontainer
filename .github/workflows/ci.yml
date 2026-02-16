@@ -3,6 +3,8 @@ name: CI
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - 'docs/**'
 
 jobs:
   # Test with existing Magento project (user has PHP/Composer locally)
