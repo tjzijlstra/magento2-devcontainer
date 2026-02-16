@@ -99,7 +99,7 @@ This is only necessary if you're never using the devcontainer ever again. If you
 :::
 
 :::danger
-This is destructive. Please 
+This is destructive. Please run these commands carefully.
 :::
 ```bash
 ## List the relevant containers for review
