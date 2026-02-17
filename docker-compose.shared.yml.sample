@@ -2,6 +2,7 @@ services:
   php:
     volumes:
       - ../:/workspace:cached
+      - ./magento2-devcontainer/mailpit/mailpit.ini.sample:/usr/local/etc/php/conf.d/mailpit.ini:ro
     working_dir: /workspace
 
   nginx:
