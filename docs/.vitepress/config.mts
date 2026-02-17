@@ -43,6 +43,8 @@ export default defineConfig({
       {
         text: 'Features',
         items: [
+          { text: 'Claude Code', link: '/features/claude-code' },
+          { text: 'GitHub CLI', link: '/features/github-cli' },
           { text: 'Speedscope', link: '/features/speedscope' },
           { text: 'Xdebug', link: '/features/xdebug' }
         ]

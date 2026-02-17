@@ -40,17 +40,6 @@ Xdebug is pre-installed and configured for debugging:
 
 Use the [PHP Debug VS Code](https://marketplace.visualstudio.com/items?itemName=xdebug.php-debug) extension to connect.
 
-## Devcontainer Features
-
-The following [devcontainer features](https://containers.dev/features) are installed automatically:
-
-| Feature     | Description                             |
-| ----------- | --------------------------------------- |
-| Git         | Version control (latest)                |
-| GitHub CLI  | `gh` command for GitHub operations      |
-| Node.js     | JavaScript runtime for frontend tooling |
-| Claude Code | AI coding assistant                     |
-
 ## VS Code Extensions
 
 These extensions are installed automatically when opening in VS Code:
