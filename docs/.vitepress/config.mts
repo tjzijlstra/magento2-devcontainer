@@ -1,9 +1,12 @@
 import { defineConfig } from 'vitepress'
+import { buildLinks, buildSitemap } from './sitemap-config'
 
 const description = 'A production-like Docker development environment for Magento 2'
+const links: { url: string; lastmod: number | undefined }[] = []
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  lastUpdated: true,
   title: "Magento 2 Devcontainer",
   description,
   head: [
@@ -12,6 +15,12 @@ export default defineConfig({
     ['meta', { name: 'twitter:description', content: description }],
     ['link', { rel: 'me', href: 'https://twitter.com/graycoreio' }],
   ],
+  transformHtml(_, id, { pageData }) {
+    buildLinks(id, pageData, links)
+  },
+  buildEnd({ outDir }) {
+    buildSitemap(outDir, links)
+  },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
