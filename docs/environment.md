@@ -31,15 +31,6 @@ The PHP container is based on [`mappia/magento-php`](https://hub.docker.com/r/ma
 | curl, wget   | HTTP utilities                   |
 | vim          | Text editor                      |
 
-### Xdebug
-
-Xdebug is pre-installed and configured for debugging:
-
-- Mode: `debug`
-- Port: `9003`
-
-Use the [PHP Debug VS Code](https://marketplace.visualstudio.com/items?itemName=xdebug.php-debug) extension to connect.
-
 ## VS Code Extensions
 
 These extensions are installed automatically when opening in VS Code:
