@@ -13,6 +13,7 @@ export default defineConfig({
     ['meta', { name: 'theme-color', content: '#027ebb' }],
     ['meta', { name: 'og:description', content: description }],
     ['meta', { name: 'twitter:description', content: description }],
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/logo.svg' }],
     ['link', { rel: 'me', href: 'https://twitter.com/graycoreio' }],
   ],
   transformHtml(_, id, { pageData }) {
@@ -23,6 +24,7 @@ export default defineConfig({
   },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+    logo: '/logo.svg',
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Guide', link: '/getting-started' }
