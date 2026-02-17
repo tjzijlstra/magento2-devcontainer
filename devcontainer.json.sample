@@ -13,7 +13,9 @@
     3306,
     9200,
     5672,
-    6379
+    6379,
+    8025,
+    1025
   ],
   "initializeCommand": "[ -f .devcontainer/magento2-devcontainer/.gitignore ] || (git submodule update --init --recursive)",
   "portsAttributes": {
