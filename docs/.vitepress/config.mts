@@ -34,10 +34,15 @@ export default defineConfig({
         ]
       },
       {
-        text: 'The Environment',
+        text: 'Services',
         items: [
-          { text: 'Overview', link: '/environment' },
-          { text: 'Default Credentials', link: '/credentials' }
+          { text: 'Overview', link: '/services/' },
+          { text: 'Database (MySQL / MariaDB)', link: '/services/database' },
+          { text: 'Nginx', link: '/services/nginx' },
+          { text: 'OpenSearch', link: '/services/opensearch' },
+          { text: 'PHP', link: '/services/php' },
+          { text: 'RabbitMQ', link: '/services/rabbitmq' },
+          { text: 'Cache (Redis / Valkey)', link: '/services/cache' }
         ]
       },
       {
@@ -45,7 +50,9 @@ export default defineConfig({
         items: [
           { text: 'Claude Code', link: '/features/claude-code' },
           { text: 'GitHub CLI', link: '/features/github-cli' },
+          { text: 'n98-magerun2', link: '/features/n98-magerun2' },
           { text: 'Speedscope', link: '/features/speedscope' },
+          { text: 'VS Code Extensions', link: '/features/vscode-extensions' },
           { text: 'Xdebug', link: '/features/xdebug' }
         ]
       },
