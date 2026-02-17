@@ -1,6 +1,10 @@
 services:
   php:
-    image: mappia/magento-php:devcontainer8.4
+    build:
+      context: ../..
+      dockerfile: magento2-devcontainer/docker/php/Dockerfile
+      args:
+        BASE_IMAGE: mappia/magento-php:devcontainer8.4
     environment:
       - PHP_IDE_CONFIG=serverName=magento
       - CONFIG__DEFAULT__CATALOG__SEARCH__OPENSEARCH_SERVER_HOSTNAME=opensearch
