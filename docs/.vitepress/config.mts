@@ -41,6 +41,13 @@ export default defineConfig({
         ]
       },
       {
+        text: 'Features',
+        items: [
+          { text: 'Speedscope', link: '/features/speedscope' },
+          { text: 'Xdebug', link: '/features/xdebug' }
+        ]
+      },
+      {
         text: 'Customization',
         items: [
           { text: 'Docker Compose', link: '/customization/docker-compose' },
