@@ -14,6 +14,11 @@
   <a href="https://hub.docker.com/r/mappia/magento-php"><img src="https://img.shields.io/docker/pulls/mappia/magento-php" alt="Docker Pulls" /></a>
 </p>
 
+<h3 align="center">Supported Versions</h3>
+<p align="center">
+  <a href="compose/2.4.6/docker-compose.yml"><code>2.4.6</code></a> · <a href="compose/2.4.7/docker-compose.yml"><code>2.4.7</code></a> · <a href="compose/2.4.8/docker-compose.yml"><code>2.4.8</code></a> · <a href="compose/2.4.9/docker-compose.yml"><code>2.4.9 (beta)</code></a>
+</p>
+
 ---
 
 ## Documentation
@@ -24,16 +29,3 @@ Visit **[devcontainer.mappia.io](https://devcontainer.mappia.io)** for the full 
 - [Services](https://devcontainer.mappia.io/services/)
 - [Features](https://devcontainer.mappia.io/features/xdebug.html)
 - [Customization](https://devcontainer.mappia.io/customization/docker-compose.html)
-
-## Supported Versions
-
-| Magento Version | Configuration |
-| --------------- | --- |
-| v2.4.6 | [compose/2.4.6](compose/2.4.6/docker-compose.yml) |
-| v2.4.7 | [compose/2.4.7](compose/2.4.7/docker-compose.yml) |
-| v2.4.8 | [compose/2.4.8](compose/2.4.8/docker-compose.yml) |
-| v2.4.9 | [compose/2.4.9](compose/2.4.9/docker-compose.yml) |
-
-## License
-
-[MIT](LICENSE)
