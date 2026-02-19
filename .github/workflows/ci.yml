@@ -2,29 +2,38 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [main, ci-test]
     paths-ignore:
       - 'docs/**'
 
 jobs:
+  supported-version:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.supported-version.outputs.matrix }}
+    steps:
+      - uses: graycoreio/github-actions-magento2/supported-version@v5
+        id: supported-version
+
+  supported-version-latest:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.supported-version.outputs.matrix }}
+    steps:
+      - uses: graycoreio/github-actions-magento2/supported-version@v5
+        id: supported-version
+        with:
+          kind: latest
+
   # Test with existing Magento project (user has PHP/Composer locally)
   test-existing-project:
+    needs: supported-version
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-      matrix:
-        include:
-          - magento_version: ">=2.4.6 <2.4.7"
-            repository_url: "https://mirror.mage-os.org/"
-            stability: ""
-          - magento_version: ">=2.4.7 <2.4.8"
-            repository_url: "https://mirror.mage-os.org/"
-            stability: ""
-          - magento_version: ">=2.4.8 <2.4.9"
-            repository_url: "https://mirror.mage-os.org/"
-            stability: ""
+      matrix: ${{ fromJSON(needs.supported-version.outputs.matrix) }}
 
-    name: Existing Project ${{ matrix.name || matrix.magento_version }}
+    name: Existing Project ${{ matrix.magento }}
 
     steps:
       - name: Set up Docker Buildx
@@ -36,9 +45,8 @@ jobs:
       - name: Create Magento project
         run: |
           composer create-project --no-install \
-            --repository-url=${{ matrix.repository_url }} \
-            ${{ matrix.stability && format('--stability {0}', matrix.stability) || '' }} \
-            magento/project-community-edition${{ matrix.magento_version && format(':"{0}"', matrix.magento_version) || '' }} test-project
+            --repository-url=https://mirror.mage-os.org/ \
+            "${{ matrix.magento }}" test-project
 
       - name: Checkout devcontainer
         uses: actions/checkout@v4
@@ -122,8 +130,11 @@ jobs:
 
   # Test fresh install (user only has Docker/VS Code, no PHP/Composer)
   test-fresh-install:
+    needs: supported-version-latest
     runs-on: ubuntu-latest
-    name: Fresh Install (latest)
+    strategy:
+      matrix: ${{ fromJSON(needs.supported-version-latest.outputs.matrix) }}
+    name: Fresh Install ${{ matrix.magento }}
 
     steps:
       - name: Set up Docker Buildx
@@ -181,7 +192,7 @@ jobs:
           devcontainer exec --workspace-folder . bash -c '
             composer create-project \
               --repository-url=https://mirror.mage-os.org/ \
-              magento/project-community-edition /tmp/magento && \
+              "${{ matrix.magento }}" /tmp/magento && \
             cp -r /tmp/magento/. /workspace/ && \
             rm -rf /tmp/magento
           '
