@@ -1,0 +1,53 @@
+name: Sync Starter
+
+on:
+  push:
+    branches: 
+      - main
+
+concurrency:
+  group: sync-starter
+  cancel-in-progress: true
+
+jobs:
+  sync-starter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout starter repo
+        uses: actions/checkout@v6
+        with:
+          repository: graycoreio/magento2-devcontainer-starter
+          token: ${{ secrets.GRAYCORE_GITHUB_TOKEN }}
+          submodules: true
+
+      - name: Update submodule
+        working-directory: .devcontainer/magento2-devcontainer
+        run: |
+          git fetch origin main
+          git checkout origin/main
+
+      - name: Remove existing generated files
+        working-directory: .devcontainer
+        run: |
+          find . -maxdepth 1 -not -name 'magento2-devcontainer' -not -name '.' -exec rm -rf {} +
+
+      - name: Run init.sh
+        run: |
+          printf '\n\n' | .devcontainer/magento2-devcontainer/bin/init.sh
+
+      - name: Commit and push
+        env:
+          GRAYBOT_GPG_KEY: ${{ secrets.GRAYBOT_GPG_KEY }}
+        run: |
+          echo "$GRAYBOT_GPG_KEY" | gpg --batch --import
+          export GPG_KEY_ID=$(gpg --list-secret-keys --keyid-format LONG | grep sec | awk '{print $2}' | cut -d/ -f2)
+
+          git config --global user.signingkey $GPG_KEY_ID
+          git config --global commit.gpgSign true
+          git config --global user.email "automation@graycore.io"
+          git config --global user.name "Beep Boop"
+          git add -A
+          if ! git diff --staged --quiet; then
+            git commit -m "chore: sync devcontainer ${GITHUB_SHA::7}"
+            git push
+          fi

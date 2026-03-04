@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Stacked layers (vertical, back to front) -->
+  <rect x="56" y="56" width="400" height="400" rx="24" ry="24" fill="#016699" stroke="#01557a" stroke-width="1.5"/>
+  <rect x="36" y="36" width="400" height="400" rx="24" ry="24" fill="#3499cc" stroke="#2a7faa" stroke-width="1.5"/>
+  <rect x="16" y="16" width="400" height="400" rx="24" ry="24" fill="#4cbd94" stroke="#3a9e7a" stroke-width="1.5"/>
+
+  <!-- Terminal ">" chevron -->
+  <path d="M100 138 L216 216 L100 294" fill="none" stroke="#ffffff" stroke-width="36" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Terminal "_" cursor -->
+  <line x1="248" y1="292" x2="336" y2="292" stroke="#ffffff" stroke-width="36" stroke-linecap="round"/>
+</svg>

@@ -1,73 +1,31 @@
-# Magento 2 DevContainer
+<p align="center">
+  <img src="docs/public/logo.svg" alt="Magento 2 Devcontainer" width="120" />
+</p>
 
-This devcontainer provides a complete development environment for Magento 2 that meets [Adobe's official system requirements](https://experienceleague.adobe.com/en/docs/commerce-operations/installation-guide/system-requirements).
+<h1 align="center">Magento 2 Devcontainer</h1>
 
-## Prerequisites
+<p align="center">
+  A production-like devcontainer environment for Magento 2.
+</p>
 
-- [VSCode](https://code.visualstudio.com/) (or an editor that supports devcontainers)
-- [Docker](https://www.docker.com/products/docker-desktop/)
-- [Github Codespaces](https://github.com/features/codespaces) (Optional)
+<p align="center">
+  <a href="https://github.com/graycoreio/magento2-devcontainer/blob/main/LICENSE"><img src="https://img.shields.io/github/license/graycoreio/magento2-devcontainer" alt="License" /></a>
+  <a href="https://github.com/graycoreio/magento2-devcontainer/stargazers"><img src="https://img.shields.io/github/stars/graycoreio/magento2-devcontainer" alt="Stars" /></a>
+  <a href="https://hub.docker.com/r/mappia/magento-php"><img src="https://img.shields.io/docker/pulls/mappia/magento-php" alt="Docker Pulls" /></a>
+</p>
 
-## Installed tools
+<h3 align="center">Supported Versions</h3>
+<p align="center">
+  <a href="compose/2.4.6/docker-compose.yml"><code>2.4.6</code></a> · <a href="compose/2.4.7/docker-compose.yml"><code>2.4.7</code></a> · <a href="compose/2.4.8/docker-compose.yml"><code>2.4.8</code></a> · <a href="compose/2.4.9/docker-compose.yml"><code>2.4.9 (beta)</code></a>
+</p>
 
-### Devcontainer Features (You control)
-- [Claude Code](https://code.claude.com/docs/en/overview)
-- [Github CLI](https://cli.github.com/)
+---
 
-### Container built-ins
-- [n98-magerun2](https://github.com/netz98/n98-magerun2)
-- [composer](https://getcomposer.org/)
-- [Xdebug](https://xdebug.org/)
+## Documentation
 
-## Supported Versions
+Visit **[devcontainer.mappia.io](https://devcontainer.mappia.io)** for the full documentation, including:
 
-This environment will support all of the currently supported Magento versions. There are multiple configurations available (one for each major version of Magento).
-
-| Magento Version | Configuration                                               |
-| --------------- | ----------------------------------------------------------- |
-| v2.4.6          | [compose/2.4.6/docker-compose.yml](compose/2.4.6/docker-compose.yml)   |
-| v2.4.7          | [compose/2.4.7/docker-compose.yml](compose/2.4.7/docker-compose.yml)   |
-| v2.4.8          | [compose/2.4.8/docker-compose.yml](compose/2.4.8/docker-compose.yml)   |
-| v2.4.9          | [compose/2.4.9/docker-compose.yml](compose/2.4.9/docker-compose.yml)   |
-
-## Getting Started
-
-1. Make a .devcontainer folder in your project
-
-```bash
-mkdir -p .devcontainer
-```
-
-2. Add this repository as a git submodule to your Magento project:
-
-```bash
-git submodule add https://github.com/graycoreio/magento2-devcontainer.git .devcontainer/magento2-devcontainer
-```
-
-3. Run the `init` script 
-
-```bash
-/bin/bash .devcontainer/magento2-devcontainer/bin/init.sh
-```
-
-> [!INFO]
-> If you're on Windows (and not using WSL2) and don't have access to bash, you can simply get away with copying the sample
-> `devcontainer.json.sample`, `docker-compose.overrides.yml` and making a simple `docker-compose.yml` with the following content into your .devcontainer folder:
-
-```yml
-services: {}
-```
-
-4. Open the project in VS Code and click "Reopen in Container" when prompted.
-
-5. (Optional) Run the `setup` script
-```bash
-/bin/bash .devcontainer/magento2-devcontainer/bin/setup-install.sh
-```
-
-
-## Additional Resources
-
-- [Magento 2 DevDocs](https://developer.adobe.com/commerce/docs/)
-- [Magento Release Notes](https://experienceleague.adobe.com/docs/commerce-operations/release/notes/overview.html)
-- [System Requirements](https://experienceleague.adobe.com/en/docs/commerce-operations/installation-guide/system-requirements)
+- [Getting Started](https://devcontainer.mappia.io/getting-started.html)
+- [Services](https://devcontainer.mappia.io/services/)
+- [Features](https://devcontainer.mappia.io/features/xdebug.html)
+- [Customization](https://devcontainer.mappia.io/customization/docker-compose.html)

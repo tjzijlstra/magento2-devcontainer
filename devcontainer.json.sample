@@ -57,7 +57,13 @@
     "ghcr.io/devcontainers/features/node:1": {
       "installYarnUsingApt": false
     },
-    "ghcr.io/anthropics/devcontainer-features/claude-code:1.0": {}
+    "ghcr.io/anthropics/devcontainer-features/claude-code:1.0": {},
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+      "moby": false
+    },
+    "ghcr.io/devcontainers-extra/features/npm-package:1": {
+      "package": "@mappia/speedscope"
+    }
   },
   "hostRequirements": {
     "cpus": 4,
